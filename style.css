@@ -1,0 +1,179 @@
+:root {
+  --fundo: #f5f6f8;
+  --cartao: #ffffff;
+  --texto: #1f2328;
+  --suave: #5b6470;
+  --borda: #d9dde3;
+  --destaque: #2563eb;
+  --perigo: #dc2626;
+  --sucesso: #16a34a;
+  --sombra: 0 1px 3px rgba(0, 0, 0, .08);
+  --cor: var(--destaque);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fundo: #121417;
+    --cartao: #1c1f24;
+    --texto: #e6e8eb;
+    --suave: #9aa3ad;
+    --borda: #2f343b;
+    --destaque: #60a5fa;
+    --perigo: #f87171;
+    --sucesso: #4ade80;
+    --sombra: none;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
+  line-height: 1.5;
+}
+
+a { color: inherit; }
+
+.topo {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 16px;
+  padding: 12px 16px;
+  background: var(--cartao);
+  border-bottom: 1px solid var(--borda);
+}
+
+.marca { font-weight: 700; text-decoration: none; }
+
+.trilha { font-size: .9rem; color: var(--suave); }
+.trilha a { text-decoration: none; }
+.trilha a:hover { text-decoration: underline; }
+.trilha span + span::before { content: " › "; }
+
+.conteudo {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 24px 16px 120px;
+}
+
+h1 { font-size: 1.5rem; margin: 0 0 4px; }
+.subtitulo { color: var(--suave); margin: 0 0 24px; }
+
+.grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.cartao {
+  display: block;
+  padding: 16px;
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-left: 5px solid var(--cor);
+  border-radius: 10px;
+  box-shadow: var(--sombra);
+  text-decoration: none;
+  transition: transform .1s;
+}
+.cartao:hover { transform: translateY(-2px); }
+.cartao strong { display: block; font-size: 1.05rem; }
+.cartao small { color: var(--suave); }
+
+.vazio {
+  padding: 24px;
+  text-align: center;
+  color: var(--suave);
+  background: var(--cartao);
+  border: 1px dashed var(--borda);
+  border-radius: 10px;
+}
+
+.questao {
+  margin-bottom: 16px;
+  padding: 16px;
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  box-shadow: var(--sombra);
+}
+.questao.pendente { border-color: var(--perigo); }
+
+.questao label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  white-space: pre-wrap;
+}
+
+.questao textarea {
+  width: 100%;
+  min-height: 90px;
+  padding: 10px;
+  font: inherit;
+  color: inherit;
+  background: var(--fundo);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  resize: vertical;
+  overflow: hidden;
+}
+.questao textarea:focus { outline: 2px solid var(--cor); border-color: transparent; }
+
+.barra {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 12px;
+  padding: 12px 16px;
+  background: var(--cartao);
+  border-top: 1px solid var(--borda);
+}
+
+.estado { font-size: .85rem; color: var(--suave); min-width: 110px; }
+
+button {
+  font: inherit;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 1px solid var(--borda);
+  background: var(--cartao);
+  color: var(--texto);
+  cursor: pointer;
+}
+button.principal {
+  background: var(--cor);
+  border-color: var(--cor);
+  color: #fff;
+}
+button.principal.ok { background: var(--sucesso); border-color: var(--sucesso); }
+
+.aviso {
+  position: fixed;
+  left: 50%;
+  bottom: 80px;
+  transform: translateX(-50%);
+  max-width: calc(100% - 32px);
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: var(--texto);
+  color: var(--fundo);
+  font-size: .9rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s;
+}
+.aviso.visivel { opacity: 1; }
