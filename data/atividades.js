@@ -159,6 +159,16 @@ window.ATIVIDADES = [
         ],
       },
       {
+        numero: 24,
+        titulo: "Pré-processadores CSS (Sass e Less)",
+        questoes: [
+          "O que é um pré-processador CSS? Cite dois exemplos.",
+          "Como se declara uma variável no Sass e no Less? Qual a vantagem de usar variáveis?",
+          "O que é aninhamento de seletores? Para que serve o & nele?",
+          "Para que serve um mixin? Como reaproveitar os estilos de uma classe no Less?",
+        ],
+      },
+      {
         numero: 25,
         titulo: "Otimização de carregamento",
         questoes: [
