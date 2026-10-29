@@ -110,7 +110,11 @@
         ]));
       });
     }
-    app.replaceChildren(el("h1", { texto: d.nome }), el("p", { class: "subtitulo", texto: "Escolha a semana." }), corpo);
+    var cta = d.lousa && el("a", { class: "cta", href: d.lousa, estilo: "--cor:" + d.cor }, [
+      el("strong", { texto: "📒 Tópicos da lousa" }),
+      el("small", { texto: "Revise o conteúdo antes de responder as questões" }),
+    ]);
+    app.replaceChildren(el("h1", { texto: d.nome }), el("p", { class: "subtitulo", texto: "Escolha a semana." }), cta || "", corpo);
   }
 
   function telaSemana(d, s) {

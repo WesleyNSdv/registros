@@ -13,6 +13,9 @@
 //     ],
 //   },
 //
+// Para mostrar o botão "Tópicos da lousa" em uma disciplina, adicione
+// nela: lousa: "lousa/arquivo.html" (o arquivo fica na pasta lousa/).
+//
 // Dica: use aspas duplas e não esqueça a vírgula no fim de cada item.
 // Se a pergunta tiver aspas, escreva \" (ex.: "O que é \"deploy\"?").
 // =====================================================================
@@ -353,6 +356,7 @@ window.ATIVIDADES = [
     id: "carreiras",
     nome: "Carreiras",
     cor: "#db2777",
+    lousa: "lousa/carreiras.html",
     semanas: [
       {
         numero: 19,

@@ -87,6 +87,21 @@ h1 { font-size: 1.5rem; margin: 0 0 4px; }
 .cartao strong { display: block; font-size: 1.05rem; }
 .cartao small { color: var(--suave); }
 
+.cta {
+  display: block;
+  margin-bottom: 20px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  background: var(--cor);
+  color: #fff;
+  text-decoration: none;
+  box-shadow: var(--sombra);
+  transition: transform .1s;
+}
+.cta:hover { transform: translateY(-2px); }
+.cta strong { display: block; font-size: 1.05rem; }
+.cta small { opacity: .9; }
+
 .vazio {
   padding: 24px;
   text-align: center;
