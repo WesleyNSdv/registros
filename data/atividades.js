@@ -25,6 +25,7 @@ window.ATIVIDADES = [
     id: "ia",
     nome: "Inteligência Artificial",
     cor: "#7c3aed",
+    lousa: "lousa/ia.html",
     semanas: [
       {
         numero: 21,
@@ -128,6 +129,7 @@ window.ATIVIDADES = [
     id: "front-end",
     nome: "Front-end",
     cor: "#0ea5e9",
+    lousa: "lousa/front-end.html",
     semanas: [
       {
         numero: 22,
@@ -253,6 +255,7 @@ window.ATIVIDADES = [
     id: "redes",
     nome: "Redes",
     cor: "#0891b2",
+    lousa: "lousa/redes.html",
     semanas: [
       {
         numero: 21,

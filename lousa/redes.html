@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tópicos da Lousa</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap">
+<style>
+:root{--paper:#fdfdfb;--rule:#c9d6ee;--margin:#e8a0a0;--red:#c62828;--blue:#1a2f8a;--line:34px}
+*{box-sizing:border-box}
+body{margin:0;background:#e9e7e1;font-family:Kalam,"Segoe Print","Comic Sans MS",cursive}
+.page{max-width:900px;margin:24px auto;padding:var(--line) 28px var(--line) 64px;background:var(--paper);
+  background-image:linear-gradient(90deg,transparent 46px,var(--margin) 46px,var(--margin) 48px,transparent 48px),
+  repeating-linear-gradient(transparent 0 calc(var(--line) - 1px),var(--rule) calc(var(--line) - 1px) var(--line));
+  box-shadow:0 2px 10px rgba(0,0,0,.15);line-height:var(--line);font-size:21px;color:var(--blue)}
+h1{font-size:44px;line-height:calc(var(--line)*2);margin:0 0 var(--line);color:var(--blue);font-weight:700}
+h2{font-size:25px;line-height:var(--line);margin:var(--line) 0 0;color:var(--red);font-weight:700}
+h2 .fr{font-weight:400;margin-left:.3em}
+h2 .n{font-size:28px}
+p{margin:0 0 var(--line)}
+h2+p{margin-top:var(--line)}
+.t{color:var(--red);font-weight:700}
+code{font-family:Consolas,monospace;font-size:.85em}
+@media (max-width:600px){.page{margin:0;padding:var(--line) 14px var(--line) 40px;font-size:18px;
+  background-image:linear-gradient(90deg,transparent 28px,var(--margin) 28px,var(--margin) 30px,transparent 30px),
+  repeating-linear-gradient(transparent 0 calc(var(--line) - 1px),var(--rule) calc(var(--line) - 1px) var(--line))}h1{font-size:34px}h2{font-size:21px}}
+@media print{body{background:none}.page{box-shadow:none;margin:0;max-width:none}h2{break-after:avoid}p{break-inside:avoid}}
+</style></head><body><main class="page">
+<h1>Semana 21 a 26</h1>
+<h2><span class="n">①</span> SDN:<span class="fr"> Separar o controle da rede do hardware</span></h2>
+<p><span class="t">Virtualização de rede:</span> Switches e roteadores existem como software, dentro dos servidores.</p>
+<p><span class="t">SDN (Rede definida por software):</span> Tira a &quot;inteligência&quot; de cada equipamento e coloca em um controlador central.</p>
+<p><span class="t">Plano de controle:</span> Decide as regras da rede (o &quot;cérebro&quot;). Ideia-chave: quem pensa é o controlador.</p>
+<p><span class="t">Plano de dados:</span> Encaminha os pacotes seguindo as regras (os &quot;músculos&quot;).</p>
+<p><span class="t">vSwitch / vRouter:</span> vSwitch liga VMs no mesmo servidor; vRouter liga redes virtuais diferentes.</p>
+<p><span class="t">OpenFlow:</span> Protocolo entre controlador e switches =&gt; regras &quot;se pacote X → ação Y&quot; (tabela de fluxo).</p>
+<p><span class="t">VPC / VNet:</span> Rede virtual isolada na nuvem (AWS e GCP / Azure), com sub-rede pública e privada.</p>
+<p><span class="t">Mininet:</span> Emula hosts, switches e controlador em um só PC. Teste com <code>pingall</code>. (Ex: h1 ping h2)</p>
+<h2><span class="n">②</span> LGPD:<span class="fr"> Proteger os dados do titular</span></h2>
+<p><span class="t">LGPD (Lei 13.709/2018):</span> Define regras para coletar, guardar, usar e compartilhar dados pessoais.</p>
+<p><span class="t">Titular:</span> Pessoa a quem os dados se referem. Mantém seus direitos mesmo depois do cadastro.</p>
+<p><span class="t">Direitos do titular:</span> Confirmação, acesso, correção, anonimização, bloqueio, eliminação e portabilidade.</p>
+<p><span class="t">DSAR:</span> Pedido do titular sobre seus dados. Ideia-chave: é direito, não favor; nem todo pedido é exclusão.</p>
+<p><span class="t">Anonimização:</span> O dado não identifica mais a pessoa, sem volta. (Ex: relatórios e estatísticas)</p>
+<p><span class="t">Pseudonimização:</span> Troca nome/CPF por um código; o vínculo fica guardado à parte =&gt; continua sendo dado pessoal.</p>
+<p><span class="t">Consentimento:</span> Livre, informado, inequívoco, com finalidade definida e pode ser revogado. Checkbox desmarcado!</p>
+<p><span class="t">Aviso de privacidade:</span> Explica como os dados são usados, com quem são compartilhados e como exercer os direitos.</p>
+<h2><span class="n">③</span> Load Balancer:<span class="fr"> Distribuir a carga e escalar automaticamente</span></h2>
+<p><span class="t">Load balancer:</span> Distribui as requisições entre vários servidores e evita sobrecarga e ponto único de falha.</p>
+<p><span class="t">L4 (transporte):</span> Decide por IP e porta. Rápido, mas pouco flexível.</p>
+<p><span class="t">L7 (aplicação):</span> Decide pelo conteúdo HTTP (URL, cabeçalhos, cookies). Mais inteligente.</p>
+<p><span class="t">Health-check:</span> Testa os servidores periodicamente; quem falha sai da rotação e volta quando se recupera.</p>
+<p><span class="t">Auto-scale:</span> Ajusta a quantidade de servidores sozinho =&gt; scale out (+ servidores) e scale in (− servidores).</p>
+<p><span class="t">Métricas de escala:</span> CPU (esforço), latência (experiência do usuário) e fila (trabalho acumulado).</p>
+<p><span class="t">Política de escala:</span> Gatilho + ação + cooldown (tempo de espera). (Ex: latência &gt; 2 s → adicionar 2 servidores)</p>
+<p><span class="t">Teste de carga:</span> Mede TTFB, throughput (req/s) e taxa de erro. Throughput cai + erros sobem = sistema no limite.</p>
+<h2><span class="n">④</span> TLS/PKI:<span class="fr"> Proteger e autenticar a comunicação</span></h2>
+<p><span class="t">TLS:</span> Cifra e autentica a conexão; é o &quot;S&quot; do HTTPS.</p>
+<p><span class="t">Handshake:</span> Negociação inicial =&gt; ClientHello → ServerHello → Certificate → troca de chaves → Finished.</p>
+<p><span class="t">Cipher suite:</span> Conjunto de algoritmos (troca de chave, cifra e hash). O servidor escolhe a mais segura em comum.</p>
+<p><span class="t">Assimétrica x simétrica:</span> Assimétrica troca a chave de sessão; simétrica cifra os dados porque é mais rápida.</p>
+<p><span class="t">PKI:</span> Estrutura de confiança =&gt; CA raiz (offline) → CA intermediária → certificado do servidor.</p>
+<p><span class="t">CSR:</span> Pedido de certificado; leva só a chave pública. Ideia-chave: a chave privada nunca sai do servidor.</p>
+<p><span class="t">mTLS:</span> Cliente e servidor apresentam certificados. (Ex: Nginx com <code>ssl_verify_client on</code>)</p>
+<p><span class="t">Rotação:</span> Trocar certificado e chave periodicamente (ex: 90 dias). Certificado vazado =&gt; revogar (CRL/OCSP).</p>
+<h2><span class="n">⑤</span> Logs:<span class="fr"> Observar e diagnosticar falhas</span></h2>
+<p><span class="t">Observabilidade:</span> Entender o que acontece dentro do sistema a partir dos dados que ele produz (logs e métricas).</p>
+<p><span class="t">Log:</span> Registro automático, com data e hora, do que acontece na aplicação.</p>
+<p><span class="t">Tipos de log:</span> Evento (funcionamento normal), erro (falha) e auditoria (quem fez o quê).</p>
+<p><span class="t">Severidade:</span> INFO (esperado) &lt; WARN (fora do padrão) &lt; ERROR (falha, exige ação).</p>
+<p><span class="t">Latência e taxa de erro:</span> Tempo de resposta e % de requisições que falharam. Subindo juntas =&gt; provável causa comum.</p>
+<p><span class="t">Percentis:</span> p50 = usuário típico; p95/p99 = piores casos. Ideia-chave: a média esconde o problema.</p>
+<p><span class="t">Log centralizado:</span> Reúne os logs de vários serviços em um só lugar para achar a causa raiz.</p>
+<p><span class="t">Alerta por threshold:</span> Avisa a equipe quando a métrica passa do limite por um tempo. (Ex: erro &gt; 2% por 5 min)</p>
+<h2><span class="n">⑥</span> Edge/CDN:<span class="fr"> Levar o conteúdo para perto do usuário</span></h2>
+<p><span class="t">Edge:</span> Processa no próprio dispositivo ou gateway. Resposta em milissegundos, funciona sem internet.</p>
+<p><span class="t">Fog:</span> Camada regional que filtra e agrega os dados antes de enviar para a nuvem.</p>
+<p><span class="t">Cloud:</span> Camada central, para processamento pesado e histórico. Escolha por latência, volume e conectividade.</p>
+<p><span class="t">CDN:</span> Rede de servidores que guarda cópias do conteúdo perto do usuário.</p>
+<p><span class="t">PoP (Ponto de presença):</span> Servidor da CDN mais próximo do usuário, que responde no lugar da origem.</p>
+<p><span class="t">Provedores:</span> CloudFront (AWS), Cloudflare e Akamai =&gt; globais e rápidos de implantar; CDN própria = mais controle e custo.</p>
+<p><span class="t">Cache:</span> TTL = tempo que a cópia vale; invalidação = apagar antes do TTL. Cache hit = achou a cópia no PoP.</p>
+<p><span class="t">TTFB:</span> Tempo até o primeiro byte da resposta. Ideia-chave: cache hit no PoP =&gt; TTFB menor.</p>
+</main></body></html>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tópicos da Lousa</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap">
+<style>
+:root{--paper:#fdfdfb;--rule:#c9d6ee;--margin:#e8a0a0;--red:#c62828;--blue:#1a2f8a;--line:34px}
+*{box-sizing:border-box}
+body{margin:0;background:#e9e7e1;font-family:Kalam,"Segoe Print","Comic Sans MS",cursive}
+.page{max-width:900px;margin:24px auto;padding:var(--line) 28px var(--line) 64px;background:var(--paper);
+  background-image:linear-gradient(90deg,transparent 46px,var(--margin) 46px,var(--margin) 48px,transparent 48px),
+  repeating-linear-gradient(transparent 0 calc(var(--line) - 1px),var(--rule) calc(var(--line) - 1px) var(--line));
+  box-shadow:0 2px 10px rgba(0,0,0,.15);line-height:var(--line);font-size:21px;color:var(--blue)}
+h1{font-size:44px;line-height:calc(var(--line)*2);margin:0 0 var(--line);color:var(--blue);font-weight:700}
+h2{font-size:25px;line-height:var(--line);margin:var(--line) 0 0;color:var(--red);font-weight:700}
+h2 .fr{font-weight:400;margin-left:.3em}
+h2 .n{font-size:28px}
+p{margin:0 0 var(--line)}
+h2+p{margin-top:var(--line)}
+.t{color:var(--red);font-weight:700}
+code{font-family:Consolas,monospace;font-size:.85em}
+@media (max-width:600px){.page{margin:0;padding:var(--line) 14px var(--line) 40px;font-size:18px;
+  background-image:linear-gradient(90deg,transparent 28px,var(--margin) 28px,var(--margin) 30px,transparent 30px),
+  repeating-linear-gradient(transparent 0 calc(var(--line) - 1px),var(--rule) calc(var(--line) - 1px) var(--line))}h1{font-size:34px}h2{font-size:21px}}
+@media print{body{background:none}.page{box-shadow:none;margin:0;max-width:none}h2{break-after:avoid}p{break-inside:avoid}}
+</style></head><body><main class="page">
+<h1>Semana 22 a 28</h1>
+<h2><span class="n">①</span> APIs RESTful:<span class="fr"> Integrar o sistema a serviços externos</span></h2>
+<p><span class="t">Serviço externo:</span> Funcionalidade pronta de outra empresa usada pela internet. (Ex: envio de SMS, mapa, trânsito) =&gt; não precisa programar do zero.</p>
+<p><span class="t">Documentação da API:</span> Manual do serviço. Mostra endpoints, parâmetros, formato JSON, autenticação e erros. Ideia-chave: ler antes de programar.</p>
+<p><span class="t">Endpoint:</span> URL que executa uma ação específica da API. (Ex: POST /v1/sms envia uma mensagem)</p>
+<p><span class="t">Requisição:</span> Pedido à API = método + endpoint + headers (chave, tipo de conteúdo) + body (dados em JSON).</p>
+<p><span class="t">Código de status:</span> Número que diz o resultado da resposta. 2xx = sucesso, 4xx = erro do cliente, 5xx = erro do servidor.</p>
+<p><span class="t">Chave de API:</span> Código único que identifica quem chama a API. Simples de usar, boa para aplicações menores. Nunca publicar no GitHub.</p>
+<p><span class="t">OAuth 2.0:</span> Autorização por tokens temporários que o usuário aprova. Mais seguro que a chave quando há dados de usuários.</p>
+<h2><span class="n">②</span> Docker e Kubernetes:<span class="fr"> Empacotar e entregar a aplicação sem parar</span></h2>
+<p><span class="t">Container:</span> Pacote isolado com a aplicação + todas as dependências. Roda igual em qualquer máquina.</p>
+<p><span class="t">Imagem:</span> Molde somente leitura usado para criar containers. Ideia-chave: container = imagem em execução.</p>
+<p><span class="t">Docker:</span> Plataforma que cria imagens e roda containers =&gt; ambiente padronizado e portátil.</p>
+<p><span class="t">Kubernetes (K8s):</span> Orquestrador: gerencia muitos containers em um cluster (conjunto de servidores) de forma automática.</p>
+<p><span class="t">Réplicas:</span> Várias cópias da mesma aplicação rodando juntas para dividir a carga e aguentar falhas.</p>
+<p><span class="t">Rolling update:</span> Atualiza a versão aos poucos, container por container, sem deixar o sistema fora do ar.</p>
+<p><span class="t">Autorrecuperação:</span> O Kubernetes vigia os containers e reinicia sozinho os que falham.</p>
+<p><span class="t">PV / PVC:</span> PV (Persistent Volume) = disco do cluster; PVC (Claim) = pedido da aplicação para usar esse disco. Guarda dados que não podem sumir.</p>
+<h2><span class="n">③</span> Pré-processadores CSS:<span class="fr"> Escrever CSS mais organizado e reutilizável</span></h2>
+<p><span class="t">Pré-processador CSS:</span> Linguagem que estende o CSS (variáveis, mixins, aninhamento) e é compilada para CSS puro. (Ex: Sass e Less) Ideia-chave: o navegador só lê o .css.</p>
+<p><span class="t">Variáveis:</span> Guardam valores repetidos, como cores e espaçamentos. Sass usa <code>$</code> (<code>$primary-color: #3498db;</code>), Less usa <code>@</code> (<code>@spacing: 16px;</code>). Muda em um lugar =&gt; muda no projeto todo.</p>
+<p><span class="t">Aninhamento:</span> Seletores um dentro do outro, seguindo o HTML: <code>nav { ul { li { } } }</code>. O <code>&amp;</code> aponta para o próprio seletor. (Ex: <code>&amp;:hover</code>)</p>
+<p><span class="t">Mixins e reaproveitamento:</span> Bloco de estilos reutilizável. Sass: <code>@mixin rounded($radius)</code> + <code>@include</code>. Less: chamar a classe base, <code>.primary-button { .button; }</code>.</p>
+<p><span class="t">Funções de cor:</span> Sass: <code>color.adjust($cor, $lightness: 10%)</code> muda a luminosidade (<code>darken()</code> está descontinuado). Less: <code>fade(#3498db, 50%)</code> muda a opacidade.</p>
+<p><span class="t">Instalar e compilar:</span> Com Node.js: <code>npm install -g sass</code> e <code>npm install -g less</code>. Compilar: <code>sass sass/style.scss css/style.css</code> ou <code>lessc less/style.less css/style.css</code> =&gt; o HTML liga o style.css.</p>
+<h2><span class="n">④</span> Otimização de carregamento:<span class="fr"> Deixar o site mais leve e mais rápido</span></h2>
+<p><span class="t">Lazy loading:</span> Carrega imagens, vídeos e iframes só quando vão aparecer na tela, e não tudo ao abrir a página.</p>
+<p><span class="t">loading=&quot;lazy&quot;:</span> Atributo do HTML que ativa o lazy loading sem JavaScript. (Ex: &lt;img src=&quot;foto.jpg&quot; loading=&quot;lazy&quot;&gt;)</p>
+<p><span class="t">Onde usar lazy loading:</span> Imagens, vídeos e iframes abaixo da dobra. Não usar no conteúdo do topo nem em scripts essenciais.</p>
+<p><span class="t">Otimização de CSS:</span> Minificar e remover regras não usadas =&gt; arquivo .min.css menor para produção.</p>
+<p><span class="t">WebP:</span> Formato de imagem do Google, mais leve que JPEG e PNG com qualidade parecida.</p>
+<p><span class="t">Compressão com / sem perda:</span> Lossy = arquivo bem menor, perde um pouco de qualidade. Lossless = mantém a qualidade, reduz menos.</p>
+<p><span class="t">Imagens responsivas:</span> Entregar um tamanho de imagem para cada tela =&gt; o celular não baixa foto gigante.</p>
+<p><span class="t">SEO:</span> Otimização para buscadores. Site mais rápido tende a aparecer melhor no Google.</p>
+<h2><span class="n">⑤</span> Webpack:<span class="fr"> Empacotar módulos e dependências do front-end</span></h2>
+<p><span class="t">Módulo:</span> Arquivo de código que importa e exporta partes de outros (import / export). Organiza o projeto.</p>
+<p><span class="t">Webpack (module bundler):</span> Lê os módulos a partir da entrada, segue os imports e gera um pacote final (bundle).</p>
+<p><span class="t">Bundle:</span> Arquivo final gerado pelo Webpack. (Ex: dist/main.js) =&gt; menos requisições HTTP.</p>
+<p><span class="t">webpack.config.js:</span> Arquivo de configuração do Webpack, na raiz do projeto.</p>
+<p><span class="t">entry / output:</span> entry = arquivo de onde o Webpack começa (src/index.js); output = nome e pasta do bundle (dist/main.js).</p>
+<p><span class="t">Loaders:</span> Ensinam o Webpack a processar arquivos que não são JS. css-loader lê o CSS; style-loader injeta o CSS na página.</p>
+<p><span class="t">mode:</span> development = código legível e build rápido; production = minifica e otimiza automaticamente.</p>
+<p><span class="t">npm run build:</span> Comando que roda o Webpack (script &quot;build&quot;: &quot;webpack&quot; no package.json) e gera a pasta dist.</p>
+<h2><span class="n">⑥</span> Firebase e Google Maps:<span class="fr"> Usar back-end e mapas prontos no front-end</span></h2>
+<p><span class="t">Firebase:</span> Plataforma do Google com back-end pronto: autenticação, banco de dados e hospedagem. BaaS (Backend as a Service).</p>
+<p><span class="t">Firebase Authentication:</span> Faz registro, login e logout por e-mail/senha ou por Google, Facebook etc.</p>
+<p><span class="t">Realtime Database:</span> Banco NoSQL em nuvem que guarda JSON e sincroniza em tempo real com todos os usuários.</p>
+<p><span class="t">Rota protegida:</span> Página que só abre para usuário logado. Sem login =&gt; volta para a tela de login.</p>
+<p><span class="t">Maps JavaScript API:</span> API do Google que desenha mapas interativos no navegador. 1º passo: habilitar no Google Cloud Console.</p>
+<p><span class="t">google.maps.Map:</span> Cria o mapa dentro de uma div. Precisa de center (latitude e longitude) e zoom.</p>
+<p><span class="t">Marcador (Marker):</span> Alfinete que indica um local. Precisa de position (coordenadas) e map (em qual mapa).</p>
+<p><span class="t">addListener:</span> Liga um evento a um elemento do mapa. (Ex: clique no marcador abre um balão InfoWindow)</p>
+<h2><span class="n">⑦</span> DevSecOps:<span class="fr"> Colocar segurança em todo o ciclo e tratar erros direito</span></h2>
+<p><span class="t">DevSecOps:</span> Desenvolvimento + Segurança + Operações. Segurança em todas as fases, como responsabilidade de todos.</p>
+<p><span class="t">DevOps x DevSecOps:</span> DevOps une dev e operações para entregar rápido; DevSecOps acrescenta segurança desde o início.</p>
+<p><span class="t">SAST:</span> Teste de segurança estático: analisa o código-fonte sem executar. (Ex: achar senha escrita no código)</p>
+<p><span class="t">DAST:</span> Teste de segurança dinâmico: ataca a aplicação rodando, como um invasor faria.</p>
+<p><span class="t">Detecção precoce:</span> Achar a vulnerabilidade no começo do desenvolvimento =&gt; corrigir custa menos e o risco cai.</p>
+<p><span class="t">Exceção:</span> Sinal de erro que interrompe o fluxo e é tratado com try/catch. Separa erro da lógica principal.</p>
+<p><span class="t">Exceção específica:</span> Criar um erro com nome próprio (Ex: SaldoInsuficienteError) em vez de capturar erro genérico.</p>
+<p><span class="t">Não retornar null:</span> Retornar null causa erro de referência nula. Usar exceção ou objeto vazio.</p>
+</main></body></html>

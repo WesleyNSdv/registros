@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tópicos da Lousa</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap">
+<style>
+:root{--paper:#fdfdfb;--rule:#c9d6ee;--margin:#e8a0a0;--red:#c62828;--blue:#1a2f8a;--line:34px}
+*{box-sizing:border-box}
+body{margin:0;background:#e9e7e1;font-family:Kalam,"Segoe Print","Comic Sans MS",cursive}
+.page{max-width:900px;margin:24px auto;padding:var(--line) 28px var(--line) 64px;background:var(--paper);
+  background-image:linear-gradient(90deg,transparent 46px,var(--margin) 46px,var(--margin) 48px,transparent 48px),
+  repeating-linear-gradient(transparent 0 calc(var(--line) - 1px),var(--rule) calc(var(--line) - 1px) var(--line));
+  box-shadow:0 2px 10px rgba(0,0,0,.15);line-height:var(--line);font-size:21px;color:var(--blue)}
+h1{font-size:44px;line-height:calc(var(--line)*2);margin:0 0 var(--line);color:var(--blue);font-weight:700}
+h2{font-size:25px;line-height:var(--line);margin:var(--line) 0 0;color:var(--red);font-weight:700}
+h2 .fr{font-weight:400;margin-left:.3em}
+h2 .n{font-size:28px}
+p{margin:0 0 var(--line)}
+h2+p{margin-top:var(--line)}
+.t{color:var(--red);font-weight:700}
+code{font-family:Consolas,monospace;font-size:.85em}
+@media (max-width:600px){.page{margin:0;padding:var(--line) 14px var(--line) 40px;font-size:18px;
+  background-image:linear-gradient(90deg,transparent 28px,var(--margin) 28px,var(--margin) 30px,transparent 30px),
+  repeating-linear-gradient(transparent 0 calc(var(--line) - 1px),var(--rule) calc(var(--line) - 1px) var(--line))}h1{font-size:34px}h2{font-size:21px}}
+@media print{body{background:none}.page{box-shadow:none;margin:0;max-width:none}h2{break-after:avoid}p{break-inside:avoid}}
+</style></head><body><main class="page">
+<h1>Semana 21 a 26</h1>
+<h2><span class="n">①</span> Agentes e Ferramentas:<span class="fr"> Fazer a IA agir, não só responder</span></h2>
+<p><span class="t">Agente:</span> Sistema com LLM que decide ações e usa ferramentas para cumprir uma tarefa.</p>
+<p><span class="t">Function calling:</span> O modelo escolhe a função e gera os parâmetros em JSON =&gt; o sistema executa e devolve o resultado.</p>
+<p><span class="t">Fluxo:</span> Cadastro das funções → análise da pergunta → geração da chamada → execução e resposta.</p>
+<p><span class="t">Definição de função:</span> Nome, descrição e parâmetros (tipo e obrigatoriedade). Ideia-chave: bem descrita = chamada precisa.</p>
+<p><span class="t">Framework de orquestração:</span> Organiza agentes, ferramentas, memória e execução. (Ex: LangChain, AutoGen)</p>
+<p><span class="t">Orquestrador (manager):</span> Decompõe a tarefa e delega aos agentes especializados (executores), pelo significado e não por palavra-chave.</p>
+<p><span class="t">Handoff:</span> A saída de um agente vira a entrada do próximo, levando contexto suficiente.</p>
+<p><span class="t">Pipeline:</span> Etapas em sequência ou em paralelo. Ideia-chave: dividir em etapas facilita achar a falha (rastreabilidade).</p>
+<h2><span class="n">②</span> Planejamento Multiagente:<span class="fr"> Começar pelo problema, não pela tecnologia</span></h2>
+<p><span class="t">Definição do problema:</span> Quem é o usuário, qual a dificuldade e qual resultado se espera.</p>
+<p><span class="t">Quando usar IA generativa:</span> Linguagem natural e respostas variadas. Regras fixas (CPF, impostos, somas) =&gt; código comum.</p>
+<p><span class="t">Requisito funcional:</span> O que o sistema faz. (Ex: responder dúvidas do aluno)</p>
+<p><span class="t">Requisito não funcional:</span> Como o sistema faz: desempenho, segurança, disponibilidade.</p>
+<p><span class="t">Critério de sucesso e MVP:</span> Meta mensurável + produto mínimo viável. Ideia-chave: começar pequeno.</p>
+<p><span class="t">Sistema multiagente:</span> Divide o problema em subtarefas, cada uma com um agente especialista (papel, ferramentas, entrega).</p>
+<p><span class="t">Orquestrador:</span> Decompõe, delega, repassa contexto e consolida. Coordena, não faz tudo!</p>
+<p><span class="t">Diagrama de fluxo de dados:</span> Mostra o caminho da informação =&gt; solicitação do aluno → agentes e ferramentas → resposta.</p>
+<h2><span class="n">③</span> Código dos Agentes:<span class="fr"> Preparar o ambiente e dar conhecimento ao agente</span></h2>
+<p><span class="t">Ambiente virtual (venv):</span> Isola as bibliotecas de cada projeto e evita conflito de versões. (Ex: <code>python -m venv .venv</code>)</p>
+<p><span class="t">requirements.txt:</span> Lista as dependências e versões. <code>ModuleNotFoundError</code> =&gt; biblioteca faltando ou ambiente errado.</p>
+<p><span class="t">Chave de API:</span> Credencial secreta. Fica no <code>.env</code> (listado no <code>.gitignore</code>), nunca no GitHub.</p>
+<p><span class="t">Estrutura de pastas:</span> Separar código, dados, notebooks e configuração.</p>
+<p><span class="t">Agente por regras:</span> Entrada → regras (<code>if</code>/<code>elif</code>/<code>else</code>) → saída. Organizado em classe e método <code>responder()</code>.</p>
+<p><span class="t">Limitação:</span> O agente por regras não entende a pergunta e falha no que não foi previsto.</p>
+<p><span class="t">RAG (Geração aumentada por recuperação):</span> Busca documentos relacionados antes de responder. (Ex: banco vetorial Chroma)</p>
+<p><span class="t">Memória de curto prazo:</span> Guarda o histórico da conversa atual. Ideia-chave: memória = conversa; RAG = documentos.</p>
+<h2><span class="n">④</span> Orquestração e Git:<span class="fr"> Coordenar os agentes e versionar o código</span></h2>
+<p><span class="t">Orquestração:</span> Coordenar quem faz, quando entra e como a informação circula.</p>
+<p><span class="t">Orquestrador = maestro:</span> Distribui tarefas, gerencia o fluxo, trata falhas e integra os resultados.</p>
+<p><span class="t">Fluxo de agentes:</span> Entrada → análise → resposta → resultado final. (Ex: função <code>orquestrador()</code>)</p>
+<p><span class="t">Full-stack:</span> A orquestração liga interface, back-end, APIs e agentes.</p>
+<p><span class="t">Tool (ferramenta externa):</span> Usada quando a tarefa exige algo fora da conversa: dados reais ou uma ação. (Ex: API ViaCEP)</p>
+<p><span class="t">Fluxo com tool:</span> Usuário → agente → API externa → agente → resposta.</p>
+<p><span class="t">Git:</span> Branch isola, commit registra, merge integra.</p>
+<p><span class="t">Fluxo seguro:</span> Correção em uma branch =&gt; testar e revisar =&gt; só depois merge na main.</p>
+<h2><span class="n">⑤</span> Testes e Refinamento:<span class="fr"> Testar antes de confiar</span></h2>
+<p><span class="t">Testar:</span> Verificar se o agente realmente funciona na prática: resposta clara, útil, coerente e estável.</p>
+<p><span class="t">Teste de usabilidade:</span> Foco na experiência do usuário =&gt; resposta clara, fácil de entender e que faz sentido no contexto.</p>
+<p><span class="t">Teste de confiabilidade:</span> Foco na informação correta =&gt; resposta consistente, sem contradições e sem invenções.</p>
+<p><span class="t">Teste baseado em script:</span> Roteiro planejado: pergunta, comportamento esperado (gabarito), pontos a observar e forma de registro.</p>
+<p><span class="t">Fluxo do teste:</span> Pergunta → comportamento esperado → observação → registro.</p>
+<p><span class="t">O que observar:</span> Entendeu a pergunta, respondeu ao pedido, manteve a lógica e trouxe informação confiável. Ideia-chave: resposta bem escrita também pode estar errada.</p>
+<p><span class="t">Bug x Alucinação:</span> Bug = erro de funcionamento. Alucinação = resposta inventada, sem base confiável.</p>
+<p><span class="t">Registrar e ajustar:</span> Registra prompt, resposta, problema e evidência =&gt; ajusta prompt, parâmetros, contexto e instruções.</p>
+<p><span class="t">Melhoria contínua:</span> Testar → registrar → ajustar → testar novamente.</p>
+<h2><span class="n">⑥</span> Deploy e Mercado:<span class="fr"> Do projeto escolar ao produto real</span></h2>
+<p><span class="t">Projeto pronto para o mercado:</span> Não basta rodar no PC do desenvolvedor: precisa ser instalado, usado e apresentado.</p>
+<p><span class="t">Critérios:</span> Funcionamento sem erros, implantação simples, organização (arquivos, banco, documentação) e apresentação. (Ex: sistema de agendamento de uma clínica)</p>
+<p><span class="t">Portabilidade:</span> Onde o software pode funcionar =&gt; diferentes ambientes e dispositivos. (Ex: Nubank com Flutter: um código para Android e iOS)</p>
+<p><span class="t">Escalabilidade:</span> O quanto o sistema cresce (mais usuários, mais funções) sem perder desempenho nem estourar o custo.</p>
+<p><span class="t">Conteinerizar:</span> Empacotar a aplicação com tudo o que ela precisa: bibliotecas, dependências e configurações.</p>
+<p><span class="t">Benefícios do contêiner:</span> Evita diferença entre ambientes, reduz configuração manual e facilita testes e deploy. Ideia-chave: roda igual em qualquer lugar.</p>
+<p><span class="t">Fluxo Docker:</span> Aplicação → Dockerfile → imagem (<code>docker build</code>) → contêiner (<code>docker run</code>) → cloud (deploy).</p>
+<p><span class="t">Dockerfile = receita:</span> <code>FROM</code> imagem base, <code>WORKDIR</code> pasta, <code>COPY</code> arquivos, <code>RUN</code> instala dependências, <code>CMD</code> executa.</p>
+<p><span class="t">Pitch:</span> Mostrar o que a solução faz, qual problema resolve e o que foi aprendido, com clareza e confiança.</p>
+</main></body></html>
