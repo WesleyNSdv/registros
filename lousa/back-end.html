@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tópicos da Lousa</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap">
+<style>
+:root{--paper:#fdfdfb;--rule:#c9d6ee;--margin:#e8a0a0;--red:#c62828;--blue:#1a2f8a;--line:34px}
+*{box-sizing:border-box}
+body{margin:0;background:#e9e7e1;font-family:Kalam,"Segoe Print","Comic Sans MS",cursive}
+.page{max-width:900px;margin:24px auto;padding:var(--line) 28px var(--line) 64px;background:var(--paper);
+  background-image:linear-gradient(90deg,transparent 46px,var(--margin) 46px,var(--margin) 48px,transparent 48px),
+  repeating-linear-gradient(transparent 0 calc(var(--line) - 1px),var(--rule) calc(var(--line) - 1px) var(--line));
+  box-shadow:0 2px 10px rgba(0,0,0,.15);line-height:var(--line);font-size:21px;color:var(--blue)}
+h1{font-size:44px;line-height:calc(var(--line)*2);margin:0 0 var(--line);color:var(--blue);font-weight:700}
+h2{font-size:25px;line-height:var(--line);margin:var(--line) 0 0;color:var(--red);font-weight:700}
+h2 .fr{font-weight:400;margin-left:.3em}
+h2 .n{font-size:28px}
+p{margin:0 0 var(--line)}
+h2+p{margin-top:var(--line)}
+.t{color:var(--red);font-weight:700}
+code{font-family:Consolas,monospace;font-size:.85em}
+@media (max-width:600px){.page{margin:0;padding:var(--line) 14px var(--line) 40px;font-size:18px;
+  background-image:linear-gradient(90deg,transparent 28px,var(--margin) 28px,var(--margin) 30px,transparent 30px),
+  repeating-linear-gradient(transparent 0 calc(var(--line) - 1px),var(--rule) calc(var(--line) - 1px) var(--line))}h1{font-size:34px}h2{font-size:21px}}
+@media print{body{background:none}.page{box-shadow:none;margin:0;max-width:none}h2{break-after:avoid}p{break-inside:avoid}}
+</style></head><body><main class="page">
+<h1>Semana 22 a 28</h1>
+<h2><span class="n">①</span> APIs de terceiros:<span class="fr"> Integrar o back-end com serviços externos</span></h2>
+<p><span class="t">Ferramentas de integração:</span> Bibliotecas, frameworks ou middleware que facilitam a comunicação entre sistemas diferentes.</p>
+<p><span class="t">Middleware:</span> Camada de software que fica no meio, ligando a aplicação ao serviço externo.</p>
+<p><span class="t">Cliente HTTP:</span> Biblioteca que padroniza as chamadas a APIs REST. (Ex: Axios no Node.js, Retrofit no Java)</p>
+<p><span class="t">Autenticação:</span> Verifica a identidade de quem acessa o serviço externo =&gt; API Key (simples), OAuth 2.0 ou JWT (mais robustos).</p>
+<p><span class="t">Stateless:</span> O servidor não guarda sessão; cada requisição leva tudo o que precisa (ex: o token).</p>
+<p><span class="t">Tratamento de respostas:</span> Fazer o parsing do JSON, conferir o código HTTP e tratar os erros com try/catch.</p>
+<p><span class="t">Variável de ambiente:</span> Lugar fora do código para guardar chaves e tokens. Ideia-chave: segredo nunca vai para o Git.</p>
+<h2><span class="n">②</span> Jenkins:<span class="fr"> Automatizar build, testes e entrega</span></h2>
+<p><span class="t">CI (Integração contínua):</span> Valida o código automaticamente a cada commit, com build e testes.</p>
+<p><span class="t">CD (Entrega/Deploy contínuo):</span> Publica automaticamente em produção as versões que passaram na CI.</p>
+<p><span class="t">Jenkins:</span> Servidor de automação que executa a pipeline de CI/CD.</p>
+<p><span class="t">Pipeline:</span> Fluxo automatizado em etapas =&gt; Build → Test → Package → Deploy.</p>
+<p><span class="t">Jenkinsfile:</span> Pipeline escrita como código e versionada junto com o projeto.</p>
+<p><span class="t">Testes automatizados:</span> Scripts que testam o sistema sozinhos a cada mudança. (Ex: JUnit, Selenium)</p>
+<p><span class="t">Staging:</span> Ambiente de validação, igual à produção, usado antes de publicar.</p>
+<p><span class="t">Rollback:</span> Voltar para a última versão estável quando uma nova versão ou atualização falha.</p>
+<h2><span class="n">③</span> Servidor seguro:<span class="fr"> Proteger o servidor web contra ataques</span></h2>
+<p><span class="t">HTTPS:</span> HTTP com criptografia TLS; protege os dados entre o cliente e o servidor.</p>
+<p><span class="t">Certificado digital:</span> Comprova a identidade do site e habilita o HTTPS (cadeado no navegador).</p>
+<p><span class="t">Redirecionamento:</span> Envia todo acesso HTTP (porta 80) para HTTPS (porta 443). (Ex: redirect 301 no Nginx)</p>
+<p><span class="t">Firewall:</span> Filtra o tráfego e permite ou bloqueia conexões por regras.</p>
+<p><span class="t">Regra de ouro do firewall:</span> Liberar só os serviços essenciais e revisar as regras com frequência.</p>
+<p><span class="t">Superfície de ataque:</span> Tudo o que fica exposto e pode ser atacado (portas, serviços, contas).</p>
+<p><span class="t">Hardening:</span> Práticas que diminuem a superfície de ataque =&gt; atualizar, remover serviços desnecessários e usar senhas fortes.</p>
+<h2><span class="n">④</span> JWT:<span class="fr"> Autenticar o usuário na API com tokens</span></h2>
+<p><span class="t">JWT (JSON Web Token):</span> Token assinado digitalmente, em formato JSON, que identifica o usuário sem guardar sessão.</p>
+<p><span class="t">Estrutura do JWT:</span> Três partes separadas por ponto =&gt; header.payload.signature.</p>
+<p><span class="t">Header:</span> Diz o tipo do token e o algoritmo de assinatura. (Ex: HS256, RS256)</p>
+<p><span class="t">Payload:</span> Guarda as claims, isto é, os dados do usuário (sub, role, exp). É só codificado: nada de senha nele!</p>
+<p><span class="t">Signature:</span> Assinatura feita com a chave secreta; garante que o token não foi alterado.</p>
+<p><span class="t">Fases do JWT:</span> Geração no login → envio no header <code>Authorization: Bearer &lt;token&gt;</code> → validação na API.</p>
+<p><span class="t">401 x 403:</span> 401 Unauthorized = sem token ou não autenticado; 403 Forbidden = sem permissão (ou token recusado).</p>
+<p><span class="t">Boas práticas do JWT:</span> Expiração curta (exp), chave em variável de ambiente, refresh token e blacklist.</p>
+<h2><span class="n">⑤</span> Patches:<span class="fr"> Manter o servidor atualizado e seguro</span></h2>
+<p><span class="t">Vulnerabilidade:</span> Falha no software que pode ser explorada por um ataque.</p>
+<p><span class="t">Patch:</span> Correção pontual de uma falha de segurança no software.</p>
+<p><span class="t">CVE:</span> Código público que identifica uma vulnerabilidade conhecida. (Ex: Log4Shell)</p>
+<p><span class="t">Servidor desatualizado:</span> Fica exposto a vulnerabilidades que já são conhecidas pelos atacantes.</p>
+<p><span class="t">Homologação:</span> Ambiente de teste onde o patch é aplicado antes de ir para a produção.</p>
+<p><span class="t">Validação:</span> Testes e auditorias de segurança depois de aplicar o patch.</p>
+<p><span class="t">Monitoramento de segurança:</span> Acompanhar boletins de segurança, scanners e logs para saber quando atualizar.</p>
+<h2><span class="n">⑥</span> Spring Boot:<span class="fr"> Criar uma API REST em Java</span></h2>
+<p><span class="t">Spring Boot:</span> Framework Java que simplifica o back-end com configurações prontas e servidor embutido.</p>
+<p><span class="t">Spring Initializr:</span> Site que gera o projeto já configurado, com as dependências escolhidas.</p>
+<p><span class="t">Dependências:</span> Bibliotecas adicionadas ao projeto =&gt; Spring Web (API), Spring Data JPA (banco) e H2 (banco em memória).</p>
+<p><span class="t">mvn spring-boot:run:</span> Executa o projeto com o Tomcat embutido, por padrão na porta 8080.</p>
+<p><span class="t">Anotações do controlador:</span> <code>@RestController</code> (classe da API), <code>@RequestMapping</code> (rota), <code>@PostMapping</code> (POST) e <code>@RequestBody</code> (JSON recebido).</p>
+<p><span class="t">JPA:</span> Mapeia classes Java em tabelas do banco; cada classe com <code>@Entity</code> vira uma tabela.</p>
+<p><span class="t">Repositório:</span> Interface que estende <code>JpaRepository</code> e faz o CRUD sem escrever SQL. (Ex: <code>repository.save(obj)</code>)</p>
+<h2><span class="n">⑦</span> Monitoramento de APIs:<span class="fr"> Acompanhar a API em produção</span></h2>
+<p><span class="t">Monitoramento de API:</span> Acompanhar a API em produção para garantir disponibilidade, desempenho e confiabilidade.</p>
+<p><span class="t">Métricas da API:</span> Latência, requisições por minuto e taxa de erros 5xx (erros do servidor).</p>
+<p><span class="t">Prometheus:</span> Ferramenta que coleta e guarda as métricas da API.</p>
+<p><span class="t">Grafana:</span> Ferramenta que mostra as métricas em dashboards (painéis com gráficos).</p>
+<p><span class="t">Falso positivo:</span> Alerta disparado sem problema real. Evite com limite sustentado por um tempo.</p>
+<p><span class="t">ELK Stack / Graylog:</span> Ferramentas que reúnem e pesquisam os logs. Ideia-chave: logs são o raio-x da aplicação.</p>
+<p><span class="t">Métricas x logs:</span> Métricas mostram que algo está errado; logs ajudam a descobrir o porquê.</p>
+</main></body></html>
