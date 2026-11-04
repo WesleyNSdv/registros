@@ -27,10 +27,11 @@ code{font-family:Consolas,monospace;font-size:.85em}
 <h1>Semana 22 a 28</h1>
 <h2><span class="n">①</span> APIs de terceiros:<span class="fr"> Integrar o back-end com serviços externos</span></h2>
 <p><span class="t">Ferramentas de integração:</span> Bibliotecas, frameworks ou middleware que facilitam a comunicação entre sistemas diferentes.</p>
-<p><span class="t">Middleware:</span> Camada de software que fica no meio, ligando a aplicação ao serviço externo.</p>
 <p><span class="t">Cliente HTTP:</span> Biblioteca que padroniza as chamadas a APIs REST. (Ex: Axios no Node.js, Retrofit no Java)</p>
-<p><span class="t">Autenticação:</span> Verifica a identidade de quem acessa o serviço externo =&gt; API Key (simples), OAuth 2.0 ou JWT (mais robustos).</p>
-<p><span class="t">Stateless:</span> O servidor não guarda sessão; cada requisição leva tudo o que precisa (ex: o token).</p>
+<p><span class="t">Endpoint:</span> Endereço (URL) da API que recebe um tipo de requisição. (Ex: GET /clima?cidade=SP)</p>
+<p><span class="t">Código de status:</span> Número que a API devolve dizendo o resultado =&gt; 200 (ok), 401 (não autenticado), 404 (não encontrado), 500 (erro no servidor).</p>
+<p><span class="t">API Key (Chave de API):</span> Chave simples que identifica quem chama o serviço. Fácil de usar, mas menos robusta.</p>
+<p><span class="t">OAuth 2.0:</span> Dá acesso limitado a um serviço sem expor a senha do usuário (Ex: &quot;Entrar com Google&quot;).</p>
 <p><span class="t">Tratamento de respostas:</span> Fazer o parsing do JSON, conferir o código HTTP e tratar os erros com try/catch.</p>
 <p><span class="t">Variável de ambiente:</span> Lugar fora do código para guardar chaves e tokens. Ideia-chave: segredo nunca vai para o Git.</p>
 <h2><span class="n">②</span> Jenkins:<span class="fr"> Automatizar build, testes e entrega</span></h2>
@@ -43,6 +44,7 @@ code{font-family:Consolas,monospace;font-size:.85em}
 <p><span class="t">Staging:</span> Ambiente de validação, igual à produção, usado antes de publicar.</p>
 <p><span class="t">Rollback:</span> Voltar para a última versão estável quando uma nova versão ou atualização falha.</p>
 <h2><span class="n">③</span> Servidor seguro:<span class="fr"> Proteger o servidor web contra ataques</span></h2>
+<p><span class="t">TLS:</span> Protocolo que cifra e autentica a conexão entre cliente e servidor.</p>
 <p><span class="t">HTTPS:</span> HTTP com criptografia TLS; protege os dados entre o cliente e o servidor.</p>
 <p><span class="t">Certificado digital:</span> Comprova a identidade do site e habilita o HTTPS (cadeado no navegador).</p>
 <p><span class="t">Redirecionamento:</span> Envia todo acesso HTTP (porta 80) para HTTPS (porta 443). (Ex: redirect 301 no Nginx)</p>
@@ -51,7 +53,7 @@ code{font-family:Consolas,monospace;font-size:.85em}
 <p><span class="t">Superfície de ataque:</span> Tudo o que fica exposto e pode ser atacado (portas, serviços, contas).</p>
 <p><span class="t">Hardening:</span> Práticas que diminuem a superfície de ataque =&gt; atualizar, remover serviços desnecessários e usar senhas fortes.</p>
 <h2><span class="n">④</span> JWT:<span class="fr"> Autenticar o usuário na API com tokens</span></h2>
-<p><span class="t">JWT (JSON Web Token):</span> Token assinado digitalmente, em formato JSON, que identifica o usuário sem guardar sessão.</p>
+<p><span class="t">JWT (JSON Web Token):</span> Token assinado digitalmente, em formato JSON, que identifica o usuário sem guardar sessão (stateless).</p>
 <p><span class="t">Estrutura do JWT:</span> Três partes separadas por ponto =&gt; header.payload.signature.</p>
 <p><span class="t">Header:</span> Diz o tipo do token e o algoritmo de assinatura. (Ex: HS256, RS256)</p>
 <p><span class="t">Payload:</span> Guarda as claims, isto é, os dados do usuário (sub, role, exp). É só codificado: nada de senha nele!</p>
@@ -78,9 +80,10 @@ code{font-family:Consolas,monospace;font-size:.85em}
 <h2><span class="n">⑦</span> Monitoramento de APIs:<span class="fr"> Acompanhar a API em produção</span></h2>
 <p><span class="t">Monitoramento de API:</span> Acompanhar a API em produção para garantir disponibilidade, desempenho e confiabilidade.</p>
 <p><span class="t">Métricas da API:</span> Latência, requisições por minuto e taxa de erros 5xx (erros do servidor).</p>
-<p><span class="t">Prometheus:</span> Ferramenta que coleta e guarda as métricas da API.</p>
-<p><span class="t">Grafana:</span> Ferramenta que mostra as métricas em dashboards (painéis com gráficos).</p>
-<p><span class="t">Falso positivo:</span> Alerta disparado sem problema real. Evite com limite sustentado por um tempo.</p>
-<p><span class="t">ELK Stack / Graylog:</span> Ferramentas que reúnem e pesquisam os logs. Ideia-chave: logs são o raio-x da aplicação.</p>
-<p><span class="t">Métricas x logs:</span> Métricas mostram que algo está errado; logs ajudam a descobrir o porquê.</p>
+<p><span class="t">Prometheus e Grafana:</span> Prometheus coleta e guarda as métricas; Grafana mostra em dashboards (painéis com gráficos).</p>
+<p><span class="t">Alerta:</span> Aviso automático para a equipe quando uma métrica passa do limite.</p>
+<p><span class="t">Threshold (limiar):</span> Valor-limite que precisa durar um tempo antes de alertar =&gt; evita falso positivo (alerta sem problema real). (Ex: erros 5xx &gt; 5% por 5 min)</p>
+<p><span class="t">Severidade:</span> Nível de gravidade do alerta =&gt; crítico, alerta e aviso.</p>
+<p><span class="t">Log:</span> Registro, com data e hora, do que acontece na aplicação; é o raio-x dela. Métricas mostram que algo está errado; logs mostram o porquê. (Ex: ELK Stack, Graylog)</p>
+<p><span class="t">Tipos de logs:</span> Acesso (quem chamou o quê), erro (falhas) e auditoria (quem fez o quê).</p>
 </main></body></html>
