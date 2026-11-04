@@ -110,7 +110,7 @@
         ]));
       });
     }
-    var cta = d.lousa && el("a", { class: "cta", href: d.lousa, estilo: "--cor:" + d.cor }, [
+    var cta = d.lousa && el("a", { class: "cta", href: d.lousa, target: "_blank", rel: "noopener", estilo: "--cor:" + d.cor }, [
       el("strong", { texto: "📒 Tópicos da lousa" }),
       el("small", { texto: "Revise o conteúdo antes de responder as questões" }),
     ]);
