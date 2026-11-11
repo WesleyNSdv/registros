@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tópicos da Lousa</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap">
+<style>
+:root{--paper:#fdfdfb;--rule:#c9d6ee;--margin:#e8a0a0;--red:#c62828;--blue:#1a2f8a;--line:34px}
+*{box-sizing:border-box}
+body{margin:0;background:#e9e7e1;font-family:Kalam,"Segoe Print","Comic Sans MS",cursive}
+.page{max-width:900px;margin:24px auto;padding:var(--line) 28px var(--line) 64px;background:var(--paper);
+  background-image:linear-gradient(90deg,transparent 46px,var(--margin) 46px,var(--margin) 48px,transparent 48px),
+  repeating-linear-gradient(transparent 0 calc(var(--line) - 1px),var(--rule) calc(var(--line) - 1px) var(--line));
+  box-shadow:0 2px 10px rgba(0,0,0,.15);line-height:var(--line);font-size:21px;color:var(--blue)}
+h1{font-size:44px;line-height:calc(var(--line)*2);margin:0 0 var(--line);color:var(--blue);font-weight:700}
+h2{font-size:25px;line-height:var(--line);margin:var(--line) 0 0;color:var(--red);font-weight:700}
+h2 .fr{font-weight:400;margin-left:.3em}
+h2 .n{font-size:28px}
+p{margin:0 0 var(--line)}
+h2+p{margin-top:var(--line)}
+.t{color:var(--red);font-weight:700}
+code{font-family:Consolas,monospace;font-size:.85em}
+@media (max-width:600px){.page{margin:0;padding:var(--line) 14px var(--line) 40px;font-size:18px;
+  background-image:linear-gradient(90deg,transparent 28px,var(--margin) 28px,var(--margin) 30px,transparent 30px),
+  repeating-linear-gradient(transparent 0 calc(var(--line) - 1px),var(--rule) calc(var(--line) - 1px) var(--line))}h1{font-size:34px}h2{font-size:21px}}
+@media print{body{background:none}.page{box-shadow:none;margin:0;max-width:none}h2{break-after:avoid}p{break-inside:avoid}}
+</style></head><body><main class="page">
+<h1>Semana 21 a 26</h1>
+<h2><span class="n">①</span> Git Workflows:<span class="fr"> Organizar o trabalho da equipe com branches</span></h2>
+<p><span class="t">Commit:</span> Registra uma mudança no histórico do projeto, com mensagem explicando o que foi feito.</p>
+<p><span class="t">Branch e merge:</span> Branch é uma linha separada de trabalho; merge junta uma branch na outra (ex: na main).</p>
+<p><span class="t">Feature Branch Workflow:</span> Uma branch para cada funcionalidade; quando fica pronta, faz merge na main.</p>
+<p><span class="t">Integração tardia:</span> Branch que fica muito tempo separada =&gt; mais conflitos e erros descobertos tarde.</p>
+<p><span class="t">Entrega contínua:</span> Mudanças pequenas e frequentes, fáceis de validar e de publicar.</p>
+<p><span class="t">GitFlow:</span> Usa as branches main, develop, feature, release e hotfix =&gt; mais controle, porém mais complexo.</p>
+<p><span class="t">Trunk-Based Development:</span> Integrações pequenas e frequentes direto na branch principal (trunk). Funciona melhor com testes automatizados.</p>
+<p><span class="t">Escolha do workflow:</span> Depende do tamanho da equipe, do controle necessário e da frequência de entrega.</p>
+<h2><span class="n">②</span> Pull Request:<span class="fr"> Revisar o código antes de juntar na main</span></h2>
+<p><span class="t">PR (Pull Request):</span> Pedido para juntar as mudanças de uma branch ao código principal do projeto.</p>
+<p><span class="t">PR é comunicação:</span> Mostra o que mudou e por que mudou, e abre espaço para a revisão da equipe.</p>
+<p><span class="t">Bom PR:</span> Título claro e descrição objetiva com problema, solução e impacto. (Ex: &quot;Corrige falha no login com senha longa&quot;)</p>
+<p><span class="t">Code review:</span> Colegas avaliam o código quanto a clareza, lógica, riscos e testes.</p>
+<p><span class="t">Checklist de revisão:</span> O código funciona? Os nomes são claros? Os testes passaram? A descrição está completa?</p>
+<p><span class="t">Aprovação:</span> Regra com número mínimo de revisores que precisam aprovar antes do merge.</p>
+<p><span class="t">Checagens automáticas:</span> Testes automatizados e análise de qualidade que rodam sozinhos em cada PR.</p>
+<p><span class="t">Branch protegida:</span> A main só recebe PR revisado, aprovado e com as checagens passando.</p>
+<h2><span class="n">③</span> Monorepo x Polyrepo:<span class="fr"> Decidir como guardar vários projetos</span></h2>
+<p><span class="t">Monorepo:</span> Vários projetos guardados em um único repositório Git.</p>
+<p><span class="t">Polyrepo:</span> Um repositório separado para cada projeto =&gt; mais independência, mas mudanças coordenadas ficam difíceis.</p>
+<p><span class="t">Problemas de muitos repositórios:</span> Dependências difíceis de enxergar, mudanças espalhadas e padrões diferentes em cada repo.</p>
+<p><span class="t">Mudança atômica:</span> Alterar vários projetos em um único commit, todos juntos e de uma vez.</p>
+<p><span class="t">Benefícios do monorepo:</span> Código compartilhado, mudanças atômicas e releases (versões) coordenados.</p>
+<p><span class="t">Desafios do monorepo:</span> Repositório grande, governança, controle de permissões e builds lentos.</p>
+<p><span class="t">Nx:</span> Ferramenta que monta o grafo dos projetos, usa cache e roda tarefas só no que foi afetado.</p>
+<p><span class="t">Bazel:</span> Ferramenta de build e teste em larga escala, com resultados reproduzíveis e dependências organizadas.</p>
+<h2><span class="n">④</span> RabbitMQ:<span class="fr"> Rotear mensagens com Exchanges Direct e Topic</span></h2>
+<p><span class="t">Exchange:</span> Recebe a mensagem do publisher e encaminha para as filas certas.</p>
+<p><span class="t">Routing key:</span> Chave enviada junto com a mensagem, usada para decidir o destino. (Ex: pedido.criado)</p>
+<p><span class="t">Binding:</span> Ligação entre um exchange e uma fila, com a regra de entrega.</p>
+<p><span class="t">Direct Exchange:</span> Roteamento exato =&gt; entrega na fila cuja chave é igual à routing key.</p>
+<p><span class="t">Topic Exchange:</span> Roteamento por padrões, com palavras separadas por ponto e curingas.</p>
+<p><span class="t">Curinga *:</span> Substitui exatamente uma palavra. (Ex: pedido.* aceita pedido.criado)</p>
+<p><span class="t">Curinga #:</span> Substitui zero ou mais palavras. (Ex: pedido.# aceita pedido.pago.pix)</p>
+<p><span class="t">Várias filas:</span> Uma mesma mensagem pode ser entregue em várias filas ao mesmo tempo.</p>
+<h2><span class="n">⑤</span> Kafka Streams:<span class="fr"> Processar dados em tempo real</span></h2>
+<p><span class="t">Kafka Streams:</span> Biblioteca do Apache Kafka para processar fluxos de dados em tempo real.</p>
+<p><span class="t">Tempo real:</span> Processa cada evento assim que ele chega, sem esperar juntar um lote.</p>
+<p><span class="t">Stream:</span> Fluxo contínuo de eventos, como um histórico. (Ex: todas as compras realizadas)</p>
+<p><span class="t">Table:</span> Estado atual; guarda só o valor mais recente de cada chave. (Ex: estoque atual)</p>
+<p><span class="t">Topologia:</span> Caminho dos dados =&gt; ler → filtrar → transformar → agrupar → enviar.</p>
+<p><span class="t">DSL:</span> API Java que facilita montar o fluxo; a forma recomendada para começar.</p>
+<p><span class="t">Estado local:</span> Guarda valores parciais usados em agregações, contagens e joins.</p>
+<p><span class="t">ksqlDB:</span> Permite consultar streams com comandos parecidos com SQL, de forma rápida e simples.</p>
+<h2><span class="n">⑥</span> Observabilidade em mensageria:<span class="fr"> Acompanhar a saúde das filas</span></h2>
+<p><span class="t">Monitorar filas:</span> Perceber acúmulo, atraso e gargalo antes que vire falha.</p>
+<p><span class="t">records_in (Kafka):</span> Quantidade de mensagens entrando no sistema.</p>
+<p><span class="t">consumer_lag (Kafka):</span> Atraso entre o que foi produzido e o que já foi consumido. Lag crescendo =&gt; consumidor lento.</p>
+<p><span class="t">queue_depth (RabbitMQ):</span> Quantidade de mensagens esperando na fila.</p>
+<p><span class="t">Prometheus:</span> Coleta métricas do endpoint /metrics e permite montar dashboards e alertas (ex: no Grafana).</p>
+<p><span class="t">Log estruturado:</span> Log com campos organizados e padronizados (ex: JSON), fácil de filtrar e pesquisar.</p>
+<p><span class="t">OpenTelemetry:</span> Padrão que conecta métricas, logs e tracing distribuído (o caminho de uma mensagem entre serviços).</p>
+<p><span class="t">Métrica x log/trace:</span> A métrica mostra o que está acontecendo; log e trace mostram a causa.</p>
+</main></body></html>
